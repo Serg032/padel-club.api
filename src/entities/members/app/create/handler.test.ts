@@ -1,26 +1,6 @@
-import { CreateMemberCommand, Member } from "../../domain";
-import { Repository } from "../../domain/repository-in-memory";
-
-export class RepositoryInMemory extends Repository {
-  members: Set<Member> = new Set<Member>();
-  save(member: Member): void {
-    this.members.add(member);
-  }
-}
-
-export class Handler {
-  constructor(private repository: Repository) {}
-
-  handle(command: CreateMemberCommand) {
-    this.repository.save({
-      id: command.id,
-      name: command.name,
-      email: command.email,
-      money: command.money,
-      type: command.type,
-    });
-  }
-}
+import { CreateMemberCommand } from "../../domain";
+import { RepositoryInMemory } from "../../infrastructure/repository-in-memory";
+import { Handler } from "./handler";
 
 describe("When creating a member", () => {
   const repository: RepositoryInMemory = new RepositoryInMemory();

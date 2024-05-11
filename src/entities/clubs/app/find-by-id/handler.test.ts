@@ -17,7 +17,6 @@ describe("When finding a club by id", () => {
   });
   it("should find a club by id", () => {
     const club = handler.handle(createClubCommand.id);
-    console.log(club);
     expect(club?.id).toBe(createClubCommand.id);
     expect(club?.name).toBe(createClubCommand.name);
     expect(club?.address).toBe(createClubCommand.address);
