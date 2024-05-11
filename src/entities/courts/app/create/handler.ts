@@ -1,13 +1,13 @@
-import { CreateClubCommand } from "../../../clubs/domain";
+import { CreateCourtCommand } from "../../domain";
 import { Repository } from "../../domain/repository-interface";
 
 export class Handler {
   constructor(private repository: Repository) {}
-  handle(command: CreateClubCommand) {
+  handle(command: CreateCourtCommand) {
     this.repository.save({
       id: command.id,
       name: command.name,
-      address: command.address,
+      clubId: command.clubId,
     });
   }
 }

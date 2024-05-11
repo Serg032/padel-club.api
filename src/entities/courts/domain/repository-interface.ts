@@ -1,6 +1,7 @@
+import { Court } from ".";
 import { Club } from "../../clubs/domain";
 
 export abstract class Repository {
-  clubs: Set<Club> = new Set();
-  abstract save(club: Club): void;
+  abstract save(club: Court): void;
+  abstract findById(id: string): Court | undefined;
 }
