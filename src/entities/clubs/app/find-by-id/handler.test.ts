@@ -1,15 +1,7 @@
-import { Club, CreateClubCommand } from "../../domain";
-import { Repository } from "../../domain/repository-interface";
+import { CreateClubCommand } from "../../domain";
 import { RepositoryInMemory } from "../../infrastructure/repository-in-memory";
 import { Handler as CreateClubHandler } from "../create/handler";
-
-class Handler {
-  constructor(private repository: Repository) {}
-
-  handle(id: string): Club | undefined {
-    return this.repository.findById(id);
-  }
-}
+import { Handler } from "./handle";
 
 describe("When finding a club by id", () => {
   const repository = new RepositoryInMemory();

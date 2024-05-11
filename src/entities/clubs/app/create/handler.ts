@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import { CreateClubCommand } from "../../domain";
 import { Repository } from "../../domain/repository-interface";
 
