@@ -1,4 +1,3 @@
-import { Club, CreateClubCommand } from "../../../clubs/domain";
 import { Court, CreateCourtCommand } from "../../domain";
 import { RepositoryInMemory } from "../../infrastructure/repository-in-memory";
 import { Handler as CreateCourtHandler } from "../create/handler";

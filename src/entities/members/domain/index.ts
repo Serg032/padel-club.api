@@ -6,7 +6,7 @@ export interface Member {
   type: MemberType;
 }
 
-enum MemberType {
+export enum MemberType {
   ADMIN,
   USER,
 }

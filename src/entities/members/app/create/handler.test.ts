@@ -1,4 +1,4 @@
-import { CreateMemberCommand } from "../../domain";
+import { CreateMemberCommand, MemberType } from "../../domain";
 import { RepositoryInMemory } from "../../infrastructure/repository-in-memory";
 import { Handler } from "./handler";
 
@@ -10,7 +10,7 @@ describe("When creating a member", () => {
     name: "name",
     email: "email",
     money: 0,
-    type: 0,
+    type: MemberType.USER,
   };
   it("should create a member", () => {
     handler.handle(command);
