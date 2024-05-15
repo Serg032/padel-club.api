@@ -16,7 +16,7 @@ describe("When finding a club by id", () => {
     createClubHandler.handle(createClubCommand);
   });
   it("should find a club by id", () => {
-    const club = handler.handle(createClubCommand.id);
+    const club = handler.handle(createClubCommand.id || ""); // Ensure createClubCommand.id is always a string
     expect(club?.id).toBe(createClubCommand.id);
     expect(club?.name).toBe(createClubCommand.name);
     expect(club?.address).toBe(createClubCommand.address);
