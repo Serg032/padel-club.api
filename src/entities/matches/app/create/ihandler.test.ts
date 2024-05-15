@@ -1,30 +1,9 @@
 import { MemberType } from "../../../members/domain";
 import { CreateMatchCommand, Match } from "../../domain";
+import { Repository } from "../../domain/repository-interface";
+import { RepositoryInMemory } from "../../infrastructure/repository-in-memory";
 import { PriceService } from "../services/price-service";
-
-export abstract class Repository {
-  abstract save(match: Match): void;
-  abstract findById(id: string): Match | undefined;
-}
-
-export class RepositoryInMemory extends Repository {
-  matches: Set<Match> = new Set<Match>();
-  save(match: Match): void {
-    this.matches.add(match);
-  }
-
-  findById(id: string): Match | undefined {
-    return Array.from(this.matches).find((match) => match.id === id);
-  }
-}
-
-export class Handler {
-  constructor(private repository: Repository) {}
-
-  create(match: Match): void {
-    this.repository.save(match);
-  }
-}
+import { Handler } from "./handler";
 
 describe("When creating a match", () => {
   const repository = new RepositoryInMemory();
