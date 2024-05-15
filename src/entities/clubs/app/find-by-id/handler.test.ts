@@ -1,7 +1,7 @@
 import { CreateClubCommand } from "../../domain";
 import { RepositoryInMemory } from "../../infrastructure/repository-in-memory";
 import { Handler as CreateClubHandler } from "../create/handler";
-import { Handler } from "./handle";
+import { Handler } from "./handler";
 
 describe("When finding a club by id", () => {
   const repository = new RepositoryInMemory();
