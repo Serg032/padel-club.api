@@ -15,15 +15,16 @@ describe("When finding a club by id", () => {
   beforeEach(() => {
     createClubHandler.handle(createClubCommand);
   });
-  it("should find a club by id", () => {
-    const club = handler.handle(createClubCommand.id || ""); // Ensure createClubCommand.id is always a string
+  it("should find a club by id", async () => {
+    // Make the arrow function an async function
+    const club = await handler.handle(createClubCommand.id || ""); // Ensure createClubCommand.id is always a string
     expect(club?.id).toBe(createClubCommand.id);
     expect(club?.name).toBe(createClubCommand.name);
     expect(club?.address).toBe(createClubCommand.address);
   });
   describe("When the club does not exist", () => {
-    it("should return undefined", () => {
-      const club = handler.handle("non-existing-id");
+    it("should return undefined", async () => {
+      const club = await handler.handle("non-existing-id");
       expect(club).toBeUndefined();
     });
   });
