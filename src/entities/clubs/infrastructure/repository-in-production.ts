@@ -1,6 +1,6 @@
 import { Club, CreateClubCommand } from "../domain";
 import { Repository } from "../domain/repository-interface";
-import { clubModel } from "./club-schema";
+import { clubModel } from "./schema";
 
 export class RepositoryInProduction extends Repository {
   async save(club: CreateClubCommand): Promise<void> {

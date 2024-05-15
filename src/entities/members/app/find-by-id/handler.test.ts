@@ -15,8 +15,8 @@ describe("When finding a member by id", () => {
   beforeEach(() => {
     repository.save(command);
   });
-  it("should find a member by id", () => {
-    const member = handler.handle(command.id);
+  it("should find a member by id", async () => {
+    const member = await handler.handle(command.id);
     expect(member).toBeDefined();
     expect(member?.id).toBe(command.id);
     expect(member?.name).toBe(command.name);
@@ -25,8 +25,8 @@ describe("When finding a member by id", () => {
     expect(member?.type).toBe(command.type);
   });
   describe("When the member does not exist", () => {
-    it("should return undefined", () => {
-      const member = handler.handle("non-existing-id");
+    it("should return undefined", async () => {
+      const member = await handler.handle("non-existing-id");
       expect(member).toBeUndefined();
     });
   });
