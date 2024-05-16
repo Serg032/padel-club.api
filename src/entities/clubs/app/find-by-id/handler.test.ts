@@ -1,7 +1,7 @@
 import { CreateClubCommand } from "../../domain";
 import { RepositoryInMemory } from "../../infrastructure/repository-in-memory";
 import { Handler as CreateClubHandler } from "../create/handler";
-import { Handler } from "./handle";
+import { Handler } from "./handler";
 
 describe("When finding a club by id", () => {
   const repository = new RepositoryInMemory();
@@ -12,8 +12,8 @@ describe("When finding a club by id", () => {
     name: "Club Name",
     address: "Club Address",
   };
-  beforeEach(() => {
-    createClubHandler.handle(createClubCommand);
+  beforeEach(async () => {
+    await createClubHandler.handle(createClubCommand);
   });
   it("should find a club by id", async () => {
     // Make the arrow function an async function

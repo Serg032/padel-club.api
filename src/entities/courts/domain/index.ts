@@ -1,5 +1,5 @@
 export interface Court {
-  id: string;
+  id?: string;
   name: string;
   clubId: string;
 }

@@ -3,7 +3,7 @@ import { Member } from "../../members/domain";
 type timestamp = number;
 
 export interface Match {
-  id: string;
+  id?: string;
   clubId: string;
   courtId: string;
   start: timestamp;

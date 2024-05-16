@@ -1,7 +1,9 @@
-import express, { Request, Response } from "express";
-import router from "./app/clubs-router";
+import express from "express";
 import connectDB from "./conection";
 import "dotenv/config";
+import clubsRouter from "./app/clubs-router";
+import courtsRouter from "./app/courts-router";
+import membersRouter from "./app/members-router";
 
 const app = express();
 const port = 3000;
@@ -9,7 +11,9 @@ const port = 3000;
 connectDB();
 
 app.use(express.json());
-app.use("/clubs", router);
+app.use("/clubs", clubsRouter);
+app.use("/courts", courtsRouter);
+app.use("/members", membersRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
