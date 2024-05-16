@@ -64,7 +64,7 @@ describe("When finding a match by id", () => {
     await repository.save(createMatchCommand);
   });
   it("should return the match", async () => {
-    const match = await handler.handle(createMatchCommand.id);
+    const match = await handler.handle(createMatchCommand.id ?? "");
     expect(match).toEqual(createMatchCommand);
   });
   it("should return undefined if the match does not exist", async () => {

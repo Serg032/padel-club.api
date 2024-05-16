@@ -18,7 +18,7 @@ describe("When finding a member by id", () => {
     repository.save(command);
   });
   it("should find a member by id", async () => {
-    const member = await handler.handle(command.id);
+    const member = await handler.handle(command.id ?? "");
     expect(member).toBeDefined();
     expect(member?.id).toBe(command.id);
     expect(member?.name).toBe(command.name);
