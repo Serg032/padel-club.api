@@ -1,11 +1,13 @@
 import express from "express";
 import { RepositoryInProduction } from "../entities/members/infrastructure/repository-in-production";
 import { Handler as CreateHandler } from "../entities/members/app/create/handler";
+import { Handler as FindByIdHandler } from "../entities/members/app/find-by-id/handler";
 import { CreateMemberCommand } from "../entities/members/domain";
 
 const membersRouter = express.Router();
 const repository = new RepositoryInProduction();
 const createHandler = new CreateHandler(repository);
+const findHandler = new FindByIdHandler(repository);
 
 membersRouter.post("/", async (req, res) => {
   try {
@@ -25,7 +27,7 @@ membersRouter.post("/", async (req, res) => {
 
 membersRouter.get("/:id", async (req, res) => {
   try {
-    const member = await repository.findById(req.params.id);
+    const member = await findHandler.handle(req.params.id);
     if (member) {
       res.status(200).send(member);
     } else {

@@ -1,8 +1,8 @@
 import { Court } from "../../domain";
-import { RepositoryInMemory } from "../../infrastructure/repository-in-memory";
+import { Repository } from "../../domain/repository-interface";
 
 export class Handler {
-  constructor(private repository: RepositoryInMemory) {}
+  constructor(private repository: Repository) {}
 
   async handle(id: string): Promise<Court | undefined> {
     return await this.repository.findById(id);
