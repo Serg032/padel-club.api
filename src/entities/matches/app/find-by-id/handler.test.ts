@@ -1,15 +1,8 @@
 import { MemberType } from "../../../members/domain";
 import { CreateMatchCommand, Match } from "../../domain";
-import { Repository } from "../../domain/repository-interface";
 import { RepositoryInMemory } from "../../infrastructure/repository-in-memory";
 import { PriceService } from "../services/price-service";
-
-class Handler {
-  constructor(private repository: Repository) {}
-  handle(id: string): Match | undefined {
-    return this.repository.findById(id);
-  }
-}
+import { Handler } from "./handler";
 
 describe("When finding a match by id", () => {
   const repository = new RepositoryInMemory();
@@ -26,6 +19,8 @@ describe("When finding a match by id", () => {
           id: "1",
           name: "John",
           email: "",
+          username: "username",
+          password: "password",
           money: 0,
           type: MemberType.USER,
         },
@@ -33,6 +28,8 @@ describe("When finding a match by id", () => {
           id: "2",
           name: "Jane",
           email: "",
+          username: "username2",
+          password: "password",
           money: 0,
           type: MemberType.USER,
         },
@@ -42,6 +39,8 @@ describe("When finding a match by id", () => {
           id: "3",
           name: "Jack",
           email: "",
+          username: "username3",
+          password: "password",
           money: 0,
           type: MemberType.USER,
         },
@@ -49,6 +48,8 @@ describe("When finding a match by id", () => {
           id: "4",
           name: "Jill",
           email: "",
+          username: "username4",
+          password: "password",
           money: 0,
           type: MemberType.USER,
         },
@@ -59,15 +60,15 @@ describe("When finding a match by id", () => {
       new Date("2024-05-12T11:30:00").getTime()
     ),
   };
-  beforeEach(() => {
-    repository.save(createMatchCommand);
+  beforeEach(async () => {
+    await repository.save(createMatchCommand);
   });
-  it("should return the match", () => {
-    const match = handler.handle(createMatchCommand.id);
+  it("should return the match", async () => {
+    const match = await handler.handle(createMatchCommand.id);
     expect(match).toEqual(createMatchCommand);
   });
-  it("should return undefined if the match does not exist", () => {
-    const match = handler.handle("2");
+  it("should return undefined if the match does not exist", async () => {
+    const match = await handler.handle("2");
     expect(match).toBeUndefined();
   });
 });

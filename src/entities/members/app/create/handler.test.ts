@@ -9,11 +9,13 @@ describe("When creating a member", () => {
     id: "id",
     name: "name",
     email: "email",
+    username: "username",
+    password: "password",
     money: 0,
     type: MemberType.USER,
   };
-  it("should create a member", () => {
-    handler.handle(command);
+  it("should create a member", async () => {
+    await handler.handle(command);
     expect(repository.members.size).toBe(1);
     expect(repository.members.values().next().value.id).toBe(command.id);
     expect(repository.members.values().next().value.name).toBe(command.name);

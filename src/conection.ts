@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      `mongodb+srv://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@sergcluster.zrub7.mongodb.net/padel-manager`
+      `mongodb+srv://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@sergcluster.zrub7.mongodb.net/${process.env.COLECTION_NAME}`
     );
     console.log("DB connected");
   } catch (error) {

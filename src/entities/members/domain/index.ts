@@ -2,6 +2,8 @@ export interface Member {
   id: string;
   name: string;
   email: string;
+  username: string;
+  password: string;
   money: number;
   type: MemberType;
 }

@@ -1,10 +1,14 @@
 import mongoose, { Document, Schema } from "mongoose";
 import { Court } from "../domain";
 
-export interface ICourt extends Document, Omit<Court, "id"> {}
+interface ICourt extends Document, Omit<Court, "id"> {}
 
 const courtSchema: Schema = new Schema({
-  name: String,
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   clubId: { type: Schema.Types.ObjectId, ref: "Club" },
 });
 

@@ -9,6 +9,8 @@ describe("When finding a member by id", () => {
     id: "id",
     name: "name",
     email: "email",
+    username: "username",
+    password: "password",
     money: 0,
     type: 0,
   };

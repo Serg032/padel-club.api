@@ -1,6 +1,6 @@
 import { CreateCourtCommand } from "../domain";
 import { Repository } from "../domain/repository-interface";
-import { courtModel } from "./court-schema";
+import { courtModel } from "./schema";
 
 export class RepositoryInProduction extends Repository {
   async save(court: CreateCourtCommand) {

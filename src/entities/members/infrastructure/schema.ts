@@ -1,12 +1,31 @@
 import mongoose, { Document, Schema } from "mongoose";
 import { CreateMemberCommand, MemberType } from "../domain";
 
-export interface IMember extends Document, Omit<CreateMemberCommand, "id"> {}
+interface IMember extends Document, Omit<CreateMemberCommand, "id"> {}
 
 const memberSchema: Schema = new Schema({
-  name: String,
-  email: String,
-  money: Number,
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  money: {
+    type: Number,
+    required: false,
+  },
   type: {
     type: String,
     enum: Object.values(MemberType),

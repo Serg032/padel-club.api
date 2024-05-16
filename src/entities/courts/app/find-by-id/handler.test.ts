@@ -12,8 +12,8 @@ describe("When finding a court by id", () => {
     name: "Court Name",
     clubId: "Court Address",
   };
-  beforeEach(() => {
-    createCourtHandler.handle(createCourtCommand);
+  beforeEach(async () => {
+    await createCourtHandler.handle(createCourtCommand);
   });
   it("should find a court by id", async () => {
     const court = await handler.handle(createCourtCommand.id!); // Add the '!' operator to assert that createCourtCommand.id is not undefined
