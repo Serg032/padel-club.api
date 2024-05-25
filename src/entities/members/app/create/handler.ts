@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import { CreateMemberCommand } from "../../domain";
 import { Repository } from "../../domain/repository-in-memory";
 
@@ -6,7 +7,7 @@ export class Handler {
 
   async handle(command: CreateMemberCommand) {
     await this.repository.save({
-      id: command.id,
+      id: randomUUID(),
       name: command.name,
       email: command.email,
       username: command.username,

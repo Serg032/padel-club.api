@@ -6,7 +6,6 @@ describe("When creating a member", () => {
   const repository: RepositoryInMemory = new RepositoryInMemory();
   const handler = new Handler(repository);
   const command: CreateMemberCommand = {
-    id: "id",
     name: "name",
     email: "email",
     username: "username",
@@ -17,7 +16,6 @@ describe("When creating a member", () => {
   it("should create a member", async () => {
     await handler.handle(command);
     expect(repository.members.size).toBe(1);
-    expect(repository.members.values().next().value.id).toBe(command.id);
     expect(repository.members.values().next().value.name).toBe(command.name);
     expect(repository.members.values().next().value.email).toBe(command.email);
     expect(repository.members.values().next().value.money).toBe(command.money);

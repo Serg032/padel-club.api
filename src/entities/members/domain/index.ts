@@ -13,4 +13,4 @@ export enum MemberType {
   USER,
 }
 
-export interface CreateMemberCommand extends Member {}
+export interface CreateMemberCommand extends Omit<Member, "id"> {}

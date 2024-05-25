@@ -6,7 +6,6 @@ describe("When finding a member by id", () => {
   const repository: RepositoryInMemory = new RepositoryInMemory();
   const handler = new Handler(repository);
   const command: CreateMemberCommand = {
-    id: "id",
     name: "name",
     email: "email",
     username: "username",
@@ -15,12 +14,20 @@ describe("When finding a member by id", () => {
     type: 0,
   };
   beforeEach(() => {
-    repository.save(command);
+    repository.save({
+      id: "id",
+      name: command.name,
+      email: command.email,
+      username: command.username,
+      password: command.password,
+      money: command.money,
+      type: command.type,
+    });
   });
   it("should find a member by id", async () => {
-    const member = await handler.handle(command.id ?? "");
+    const member = await handler.handle("id");
     expect(member).toBeDefined();
-    expect(member?.id).toBe(command.id);
+    expect(member?.id).toBe("id");
     expect(member?.name).toBe(command.name);
     expect(member?.email).toBe(command.email);
     expect(member?.money).toBe(command.money);
